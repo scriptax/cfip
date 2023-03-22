@@ -87,7 +87,7 @@ const findIP = (function () {
 
         let progress = numberOfWorkingIPs * 100 / maxResults;
         document.querySelector('.progress-bar').style.width = `${progress}%`;
-        document.querySelector('.progress-bar').innerHTML = `${progress}%`;
+        document.querySelector('.progress-bar').innerHTML = `${Math.ceil(progress)}%`;
 
         listResults();
       }
@@ -103,8 +103,9 @@ const findIP = (function () {
   function listResults() {
     const sortedArr = validIPs.sort((a, b) => a.time - b.time);
     const tableArr = sortedArr.map(obj => {
-      return `<tr><td></td><td>${obj.ip}</td><td>${obj.location}</td><td>${obj.time} ms</td>
-      <td><button class="copy-btn" title="Copy to clipboard"><span class="tooltiptext">Copied!</span></button></td></tr>`;
+      return `<tr><td></td><td>${obj.ip}</td><td><img class="location-icon" src="assets/${obj.location}.svg" draggable="false"></td>
+      <td>${obj.time} ms</td>
+      <td><button class="copy-btn" title="Copy to clipboard"><span class="tooltiptext">Copied ✅</span></button></td></tr>`;
     });
 
     const tableRows = tableArr.join('\n');

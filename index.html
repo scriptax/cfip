@@ -8,6 +8,10 @@
 <body>
   <div class="main-container">
     <div class="grid-item1">
+      <img class="cf-logo" src="assets/cloudflare.svg" draggable="false">
+      <strong class="header">Cloudflare IP scanner</strong>
+    </div>
+    <div class="grid-item2">
       <span class="option-title">Timeout:</span>
       <select id="timeout-list" class="list_btn">
         <option value="1000">1000 ms</option>
@@ -17,7 +21,7 @@
         <option value="8000">8000 ms</option>
       </select>
     </div>
-    <div class="grid-item2">
+    <div class="grid-item3">
       <span class="option-title">Max IP Scan:</span>
       <select id="scan-ip-list" class="list_btn">
         <option value="200">1000</option>
@@ -27,7 +31,7 @@
         <option value="100000">100000+</option>
       </select>
     </div>
-    <div class="grid-item3">
+    <div class="grid-item4">
       <span class="option-title">Max IP Results:</span>
       <select id="results-list" class="list_btn">
         <option value="10">10</option>
@@ -37,24 +41,24 @@
         <option value="50">50</option>
       </select>
     </div>
-    <div class="grid-item4">
+    <div class="grid-item5">
       <button class="start-scan-btn">Start</button>
     </div>
-    <div class="grid-item5">
+    <div class="grid-item6">
       <div class="progress-bar-border">
         <div class="progress-bar"></div>
       </div>
     </div>
-    <div class="grid-item6 status">
+    <div class="grid-item7 status">
     </div>
-    <div class="grid-item7 best-result-box">
+    <div class="grid-item8 best-result-box">
       <strong>Best IP:</strong>
         <table>
           <tbody id="best-table">
           </tbody>
         </table>
     </div>
-    <div class="grid-item8 result-box">
+    <div class="grid-item9 result-box">
       <strong>All Results:</strong>
         <table>
           <tbody id="all-table">
@@ -70,7 +74,7 @@
           </thead>
         </table>
     </div>
-    <div class="grid-item9">
+    <div class="grid-item10">
       <!--Reserved for "Pervious results" section-->
     </div>
   </div> 
