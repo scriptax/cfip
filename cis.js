@@ -41,7 +41,7 @@ const findIP = (function () {
     return randIPs.slice(0, max);
   }
 
-  async function testIPs(ipList, timeout, maxResults) {
+  async function testIPs(ipList, maxLatency, maxResults) {
     let testNo = 0;
     let numberOfWorkingIPs = 0;
     validIPs = [];
@@ -53,6 +53,7 @@ const findIP = (function () {
       const url = `https://${el.ip}/__down`;
       const startTime = new Date().getTime();
       const controller = new AbortController();
+      let timeout = 2 * maxLatency;
   
       for (const ch of ['', '|', '/', '-', '\\']) {
         const timeoutId = setTimeout(() => {
@@ -62,6 +63,7 @@ const findIP = (function () {
         if (ch) {
           document.querySelector('.status').style.color = 'green';
         } else {
+          timeout = 1.5 * maxLatency;
           document.querySelector('.status').style.color = 'red';
         }
 
@@ -137,14 +139,14 @@ const findIP = (function () {
   }
 
   return function(start) {
-    const timeout = Number(document.getElementById('timeout-list').value);
+    const maxLatency = Number(document.getElementById('timeout-list').value);
     const maxScan = Number(document.getElementById('scan-ip-list').value);
     const maxResults = Number(document.getElementById('results-list').value);
     let scanArr = [];
     if(start) {
       runScan = true;
       scanArr = randomizeElements(cidrToIpArray(), maxScan);
-      testIPs(scanArr, timeout, maxResults);
+      testIPs(scanArr, maxLatency, maxResults);
     } else {
       runScan = false;
       return undefined;
