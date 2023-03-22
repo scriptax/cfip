@@ -9,37 +9,22 @@
   <div class="main-container">
     <div class="grid-item1">
       <img class="cf-logo" src="assets/cloudflare.svg" draggable="false">
-      <strong class="header">Cloudflare IP scanner</strong>
+      <strong class="description">Cloudflare IP scanner</strong>
     </div>
     <div class="grid-item2">
       <span class="option-title">Max Latency:</span>
-      <select id="timeout-list" class="list_btn">
-        <option value="1000">1000 ms</option>
-        <option value="2000" selected>2000 ms</option>
-        <option value="4000">4000 ms</option>
-        <option value="6000">6000 ms</option>
-        <option value="8000">8000 ms</option>
-      </select>
+      <span id="latency-slider-val">2000</span>
+      <input id="latency-setting" class="slider" type="range" min="250" max="4000" value="2000" step="10">
     </div>
     <div class="grid-item3">
-      <span class="option-title">Max IP Scan:</span>
-      <select id="scan-ip-list" class="list_btn">
-        <option value="200">1000</option>
-        <option value="500" selected>2000</option>
-        <option value="1000">5000</option>
-        <option value="5000">20000</option>
-        <option value="100000">100000+</option>
-      </select>
+      <span class="option-title">Max IP Results:</span>
+      <span id="max-slider-val">20</span>
+      <input id="results-setting" class="slider" type="range" min="5" max="50" value="20">
     </div>
     <div class="grid-item4">
-      <span class="option-title">Max IP Results:</span>
-      <select id="results-list" class="list_btn">
-        <option value="10">10</option>
-        <option value="20" selected>20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-      </select>
+      <span class="option-title" style="color:grey;">Max IP:</span>
+      <span id="max-slider-val" style="color:grey;">20</span>
+      <input id="results-setting" class="slider" type="range" min="5" max="50" value="20" disabled>
     </div>
     <div class="grid-item5">
       <button class="start-scan-btn">Start</button>

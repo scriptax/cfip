@@ -32,13 +32,11 @@ const findIP = (function () {
     return AllIPs;
   }
 
-  function randomizeElements(IPs, max) {
-   
+  function randomizeElements(IPs) {
     const randIPs = [...IPs].sort(ip => {
       return ip.location === 'London' ? 0.75 - Math.random() : 0.5 - Math.random();
     });
-    
-    return randIPs.slice(0, max);
+    return randIPs;
   }
 
   async function testIPs(ipList, maxLatency, maxResults) {
@@ -82,10 +80,11 @@ const findIP = (function () {
         clearTimeout(timeoutId);
       }
   
-      const duration = (new Date().getTime()) - startTime;
-      if (testResult === 5) { 
+      const duration = Math.floor(((new Date().getTime()) - startTime) / 5);
+      console.log(duration)
+      if (testResult === 5 && duration <= maxLatency) { 
         numberOfWorkingIPs++;
-        validIPs.push({ip: el.ip, location: el.location, time: Math.floor(duration / 5)});
+        validIPs.push({ip: el.ip, location: el.location, time: duration});
 
         let progress = numberOfWorkingIPs * 100 / maxResults;
         document.querySelector('.progress-bar').style.width = `${progress}%`;
@@ -139,13 +138,12 @@ const findIP = (function () {
   }
 
   return function(start) {
-    const maxLatency = Number(document.getElementById('timeout-list').value);
-    const maxScan = Number(document.getElementById('scan-ip-list').value);
-    const maxResults = Number(document.getElementById('results-list').value);
+    const maxLatency = Number(document.getElementById('latency-setting').value);
+    const maxResults = Number(document.getElementById('results-setting').value);
     let scanArr = [];
     if(start) {
       runScan = true;
-      scanArr = randomizeElements(cidrToIpArray(), maxScan);
+      scanArr = randomizeElements(cidrToIpArray());
       testIPs(scanArr, maxLatency, maxResults);
     } else {
       runScan = false;
@@ -164,4 +162,10 @@ document.querySelector('.start-scan-btn').addEventListener('click', function () 
     document.querySelector('.progress-bar').innerHTML = '0%';
     findIP(true);
   }
+});
+document.getElementById('latency-setting').addEventListener('mousemove', function () {
+  document.getElementById('latency-slider-val').innerHTML = this.value;
+});
+document.getElementById('results-setting').addEventListener('mousemove', function () {
+  document.getElementById('max-slider-val').innerHTML = this.value;
 });
