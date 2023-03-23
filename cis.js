@@ -163,9 +163,15 @@ document.querySelector('.start-scan-btn').addEventListener('click', function () 
     findIP(true);
   }
 });
-document.getElementById('latency-setting').addEventListener('pointermove', function () {
+document.getElementById('latency-setting').addEventListener('mousemove', function () {
   document.getElementById('latency-slider-val').innerHTML = this.value;
 });
-document.getElementById('results-setting').addEventListener('pointermove', function () {
+document.getElementById('results-setting').addEventListener('mousemove', function () {
+  document.getElementById('max-slider-val').innerHTML = this.value;
+});
+document.getElementById('latency-setting').addEventListener('touchmove', function () {
+  document.getElementById('latency-slider-val').innerHTML = this.value;
+});
+document.getElementById('results-setting').addEventListener('touchmove', function () {
   document.getElementById('max-slider-val').innerHTML = this.value;
 });
